@@ -3,18 +3,39 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    
+    gridList: {
+        cellHeight: 1700,
+       
+    },
+      paper: {
+        marginTop:30,
+        marginLeft:30,    
+        width: '95%',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        padding: '30px'
+
+  },
+
+}));
 
 
 
 function Etusivu(props){
 
-    
+    const classes = useStyles(); 
     return(
-        <Paper margintop='30'>
-            <Typography align='center' variant='h4'>Tervetuloa majakkahotelli Valon kotisivuille!</Typography>
-            <Typography align='center' margintop='20' marginleft='30' marginright='30'> Majakkahotelli Valo on tunnelmallinen Valosaaren majakkaan vuonna 2014 perustettu hotelli. Hotellimme tarjoaa kävijöilleen merellisen elämyksen pienellä Valon saarella. Saarelle on noin 30 minuutin venematka Helsingin kauppatorilta. </Typography>
-            <div>
-            <GridList cellHeight={800}  cols={1}>
+        
+        <Paper className={classes.paper}>
+            <Typography  variant='h4'>Tervetuloa majakkahotelli Vilkun kotisivuille!</Typography>
+            <Typography  > Majakkahotelli Vilkku on tunnelmallinen Hyljesaaren majakkaan vuonna 2014 perustettu hotelli. Hotellimme tarjoaa kävijöilleen merellisen elämyksen pienellä  Hyljesaarella. Saarelle on noin 30 minuutin venematka Hangon satamasta. </Typography>
+            <div className={classes.gridList}>
+            <GridList cellHeight= '800' cols={1}>
                 {props.majakkaData.map((majakka) => (
                 <GridListTile key={majakka.img} cols={majakka.cols || 1}>
                     <img src={majakka.img} alt={majakka.title} />

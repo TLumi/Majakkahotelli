@@ -10,7 +10,7 @@ import 'react-nice-dates/build/style.css'
 import fiLocale from 'date-fns/locale/fi';
 import Box from '@material-ui/core/Box';
 
-function Varauslomake() {
+function Varauslomake(props) {
     let {id, nimi} = useParams();
     
     const [startDate, setStartDate] = useState()
@@ -44,6 +44,12 @@ function Varauslomake() {
         });
         setIlmoitus('');
     };
+    const tarkistaSaatavuus=(e) =>{
+        setStartDate({
+            ...startDate,
+            [e.target.name]:e.target.value
+        });
+    }
         
         const lisaaVaraus=(e) => {
             
@@ -73,8 +79,8 @@ function Varauslomake() {
                 <Typography> Valitse ensin vierailusi ajankohta ja täytä sitten varauslomakkeen muut tiedot</Typography>
                <Box>
                <div style= {{ width:400}}>
-                    <Typography>Tulopäivä: {startDate ? format(startDate, 'dd MMM yyyy', { locale: fiLocale }) : 'none'}.</Typography>
-                    <Typography>Lähtöpäivä: {endDate ? format(endDate, 'dd MMM yyyy', { locale: fiLocale }) : 'none'}.</Typography>
+                    <Typography>Tulopäivä: {startDate ? format(startDate, 'dd mmm yyyy', { locale: fiLocale }) : 'none'}.</Typography>
+                    <Typography>Lähtöpäivä: {endDate ? format(endDate, 'dd mmm yyyy', { locale: fiLocale }) : 'none'}.</Typography>
                     <DateRangePickerCalendar
                         startDate={startDate}
                         endDate={endDate}

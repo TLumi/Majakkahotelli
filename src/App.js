@@ -19,8 +19,8 @@ const theme = createMuiTheme({
   const huoneet =[
     {id:1,
     nimi:'Horisontti',
-    kuvaus: 'Tästä huoneesta voit katsella kauas merelle. ',
-    varustus: 'Tässä huoneessa on parisänky, oma kylpyhuone ja pieni jääkaappi. Huoneen varustuksiin kuuluu myös hiustenkuivaaja ja silitysrauta.',
+    kuvaus: 'Tästä huoneesta voit katsella kauas merelle. Huone sijaitsee majakan keskiosassa ja siitä näkee sekä saaren luontoa että kauas horisonttiin.',
+    varustus: 'Huone on varustettu kahdella erillisellä sängyllä. Huoneessa on oma wc sekä suihkuhuone.',
     kuva: 'https://cdn.pixabay.com/photo/2017/06/18/20/50/view-2417156_960_720.jpg',
     kuva2: 'https://cdn.pixabay.com/photo/2016/11/21/16/21/bed-1846251_960_720.jpg',
   },
@@ -34,7 +34,7 @@ const theme = createMuiTheme({
   {id:3,
     nimi:'Ulkoluoto',
     kuvaus: 'Hotellin alimman kerroksen huoneessa voit aistia meren lähelläsi, kuin oleskelisit ulkoluodon aurinkoisilla kallioilla. Tässä huoneessa meri on lähellä ja huoneen omassa kylpyammeessa voit kuulla tyrskyjen lyövän kallioon. Myös pienen saaremme luonto avautuu ikkunasta tarjoten matkaajalle vuodenaikojen vaihtelun hyvin läheltä seuraten.',
-    varustus: 'Tässä huoneessa on parisänky, oma kylpyhuone ja pieni jääkaappi. Huoneen varustuksiin kuuluu myös hiustenkuivaaja ja silitysrauta.',
+    varustus: 'Tässä huoneessa on parisänky ja oma kylpyhuone. Huoneen varustuksiin kuuluu kiikarit',
     kuva: 'https://cdn.pixabay.com/photo/2014/07/20/17/01/hotel-room-key-397946_960_720.jpg',
     kuva2: 'https://cdn.pixabay.com/photo/2018/06/14/21/15/the-interior-of-the-3475656_960_720.jpg',
   },
@@ -76,6 +76,21 @@ const theme = createMuiTheme({
     img:'https://cdn.pixabay.com/photo/2019/03/22/16/44/lighthouse-4073638_960_720.jpg',
     title:'G'},
   ]
+
+  const varausData=[
+    {id:1,
+      nimi:'Lyhty',
+      etunimi: 'Tuula',
+      sukunimi: 'Testi',
+      email: 'tuula.testi@email.com',
+      puhelin:'0300567875',
+      startDate:'2021-04-21',
+      endDate: '2021-04-25',
+    }
+
+  ]
+
+
   function App() {
     return (
       <BrowserRouter>
@@ -87,9 +102,9 @@ const theme = createMuiTheme({
                 <Switch>
                 <Route exact path='/' render={(props)=> <Etusivu{...props} majakkaData={majakkaData}/>}/>
                   <Route path='/huoneet' render={(props)=> <Huoneet{...props} huoneet={huoneet}/>}/>
-                  <Route path='/yhteystiedot' component={Yhteystiedot}/>
+                  <Route path='/yhteystiedot' render={(props)=> <Yhteystiedot{...props} majakkaData={majakkaData}/>}/>
                   <Route path='/lueLisaa/:id/:nimi/:kuvaus/:varustus/' render ={(props)=><Huone{...props} kuvaData={kuvaData}/>}/>
-                  <Route path='/varaa/:id/:nimi/' component={Varauslomake}/>
+                  <Route path='/varaa/:id/:nimi/' render={(props)=><Varauslomake{...props} varausData={varausData}/>}/>
 
               </Switch>
             </div>

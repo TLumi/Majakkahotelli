@@ -18,8 +18,22 @@ const useStyles = makeStyles((theme) => ({
     gridList: {
       width: 700,
       height: 500,
+      cellHeight: 160
     },
-  }));
+      paper: {
+        marginTop:30,
+        marginLeft:30,    
+        width: '95%',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        padding: '30px'
+
+  },
+
+}));
+
+   
 
 function Huone(props){
    let {id, nimi, kuvaus, varustus} =useParams();
@@ -27,15 +41,15 @@ function Huone(props){
      const classes = useStyles(); 
 return(
       
-<Paper>
+<Paper className={classes.paper}>
      
-        <Typography align='center' variant='h4'>{nimi}</Typography>
-        <Typography align='center' margintop='20'> {kuvaus} </Typography>
-        <Typography align='center' margintop='20'> {varustus} </Typography>
+        <Typography variant='h4'>{nimi}</Typography>
+        <Typography > {kuvaus} </Typography>
+        <Typography > {varustus} </Typography>
 
         <Button align='center' component ={Link} to = {'/varaa/'+ id+ '/'+ nimi}>Varaa</Button>
         <div className={classes.root}>
-      <GridList cellHeight={160} className={classes.gridList} cols={3}>
+            <GridList  className={classes.gridList} cols={3}>
                 {props.kuvaData.map((kuva) => (
                 <GridListTile key={kuva.img} cols={kuva.cols || 1}>
                     <img src={kuva.img} alt={kuva.title} />

@@ -9,16 +9,40 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import CardContent from '@material-ui/core/CardContent';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles((theme) => ({
+    paper: {marginTop:30,
+            marginLeft:30,    
+            width: '90%',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignContent: 'center',
+            padding: '30px'
+
+      },
+    grid: {
+        marginTop:30, 
+        justifyContent:'center',
+        alignItems:'center',
+        justify:'center',
+      },
+
+    griditem: {
+        marginTop:30,
+        marginBottom:30,
+    }
+    }));
 
 function Huoneet(props){
+    const classes = useStyles(); 
     return(
-        <Paper style= {{marginTop:80, marginLeft:20, marginRight:20}}>
+        <Paper className={classes.paper} >
         <Typography>Hotellistamme löytyy kolme erilaista huonetta matkailijoiden käyttöön. </Typography>
         <Grid >   
             {props.huoneet.map(huone => {
                 return(
-                   <Grid item key={huone.id}>
+                   <Grid className={classes.griditem} item key={huone.id}>
                        <Card >
                        <CardActionArea component = {Link} to = {'/lueLisaa/'+ huone.id+ '/'+ huone.nimi+ '/'+ huone.kuvaus+ '/'+huone.varustus}>
                             <CardMedia image= {huone.kuva} 
